@@ -32,14 +32,17 @@ class CalculatorViewController: UIViewController {
             // WITHOUT this line, the display reads 4, then deletes the 4 to show 5, then deletes the 5 to show 6 -- i.e. ONLY shows ONE NUMBER at a time 
     }
     
-    @IBOutlet weak var buttonRadius: UIButton!
+   
+    @IBOutlet var buttonRadius: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        buttonRadius.layer.cornerRadius = 5
+        if buttonRadius.tag == 0 || display.tag == 0 {
+            buttonRadius.layer.cornerRadius = 5.0
     }
-
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

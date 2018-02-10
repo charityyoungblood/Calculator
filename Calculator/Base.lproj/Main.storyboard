@@ -175,7 +175,7 @@
                                     <action selector="touchDigit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZlK-CY-Ug6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRx-x7-Xlh">
+                            <button opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRx-x7-Xlh">
                                 <rect key="frame" x="191" y="197" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1425412731" green="0.59068647780000005" blue="0.74353585030000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -281,8 +281,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="buttonRadius" destination="S2J-2Q-hvY" id="NQA-m0-LMo"/>
+                        <outlet property="buttonRadius" destination="Fme-gc-zxL" id="viY-UN-IBT"/>
                         <outlet property="display" destination="Eqs-ys-tyc" id="WGM-GB-w0v"/>
+                        <outletCollection property="buttonRadius" destination="wxA-IN-tEE" collectionClass="NSMutableArray" id="V8H-hR-VMf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
