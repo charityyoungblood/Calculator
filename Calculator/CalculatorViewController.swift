@@ -15,7 +15,8 @@ class CalculatorViewController: UIViewController {
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         // TODO: Place numbers in display, based on what digits are selected
-        let textCurrentlyInDisplay = display.text // this variable will display the current text in the display 
+        let textCurrentlyInDisplay = display.text! // this variable will display the current text in the display
+        display.text! = textCurrentlyInDisplay + digit // to concatenate string data types, you can use the + sign 
     }
     
     override func viewDidLoad() {
