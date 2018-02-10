@@ -11,7 +11,7 @@ import UIKit
 class CalculatorViewController: UIViewController {
 
     @IBAction func touchDigit(_ sender: UIButton) {
-        let digit = sender.currentTitle
+        let digit = sender.currentTitle!
         print("touched \(digit) digit")
    
     }
