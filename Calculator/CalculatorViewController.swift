@@ -10,12 +10,12 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
 
-    @IBOutlet weak var display: UILabel!
+    @IBOutlet weak var display: UILabel! // this represents a property on the CalculatorViewController or an instance variable
     
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
-        print("touched \(digit) digit")
-   
+        // TODO: Place numbers in display, based on what digits are selected
+        let textCurrentlyInDisplay = display.text // this variable will display the current text in the display 
     }
     
     override func viewDidLoad() {
