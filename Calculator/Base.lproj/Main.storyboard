@@ -240,10 +240,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.48049137322308266" green="0.6955065068931352" blue="0.73711135786802029" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="n">
+                                <state key="normal" title="π">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="piOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IgQ-xG-M45"/>
                                     <action selector="touchDigit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vPC-uG-aKB"/>
                                 </connections>
                             </button>
@@ -273,6 +274,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonRadius:" destination="BYZ-38-t0r" eventType="touchUpInside" id="42m-Md-bby"/>
                                     <action selector="touchDigit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XBf-Wp-Pj1"/>
                                 </connections>
                             </button>
@@ -281,7 +283,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="buttonRadius" destination="Ctw-mn-Wnb" id="Vhx-Nn-dH4"/>
                         <outlet property="display" destination="Eqs-ys-tyc" id="WGM-GB-w0v"/>
+                        <outletCollection property="buttonRadius" destination="AIU-3O-6AN" collectionClass="NSMutableArray" id="zPJ-hZ-IQl"/>
+                        <outletCollection property="buttonRadius" destination="PaT-0q-1I7" collectionClass="NSMutableArray" id="kc7-Ka-kpo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

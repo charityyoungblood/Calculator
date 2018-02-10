@@ -15,6 +15,9 @@ class CalculatorViewController: UIViewController {
     var userIsInTheMiddleOfTyping: Bool = false // **REMEMBER: ALL properties/varaibles that are initialized in Swift HAVE to have an INITIAL VALUE** - if you create a variable and don't set it to any value, you will get an error
     
     @IBAction func touchDigit(_ sender: UIButton) {
+        if sender.tag == 0 {
+            sender.layer.cornerRadius = 5.0
+        }
         let digit = sender.currentTitle!
         
         if userIsInTheMiddleOfTyping { // if the user IS in the middle of typing, set the display text to the constant "textCurrentlyInDisplay" > then update the display text to the value of textCurrentlyInDisplay + digit pressed
@@ -32,14 +35,30 @@ class CalculatorViewController: UIViewController {
             // WITHOUT this line, the display reads 4, then deletes the 4 to show 5, then deletes the 5 to show 6 -- i.e. ONLY shows ONE NUMBER at a time 
     }
     
+    @IBAction func piOperation(_ sender: UIButton) {
+        if let mathematicalSymbol = sender.currentTitle! {// this is read: "If I can let mathematicalSymbol equal the sender(UIButton)'s current title then I'm going to
+        // you want to force unwrap only if UIButton is "set", meaning it's not "nil"
+            if mathematicalSymbol == "π" {
+                display.text = String(M_PI) // to convert the type for M_PI, which is Double, to String type - use String keyword and wrap value (M_PI) in parentheses
+            }
+        }
+        
+    }
+    
+    
+
+    var buttonRadius = [UIButton].self
+// trying to change corner radius of all buttons
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        UIButton.appearance().layer.cornerRadius = 5.0
-        
-//        if buttonRadius.tag == 0 || display.tag == 0 {
-//            buttonRadius.layer.cornerRadius = 5.0
-    
+//        UIButton.appearance().layer.cornerRadius = 5.0
+        for button in 0..<(buttonRadius.count-1) {
+        if button.tag == 0 || display.tag == 0 {
+            button.layer.cornerRadius = 5.0
+    }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,4 +68,3 @@ class CalculatorViewController: UIViewController {
 
 
 }
-
