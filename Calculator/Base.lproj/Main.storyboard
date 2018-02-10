@@ -281,9 +281,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="buttonRadius" destination="Fme-gc-zxL" id="viY-UN-IBT"/>
                         <outlet property="display" destination="Eqs-ys-tyc" id="WGM-GB-w0v"/>
-                        <outletCollection property="buttonRadius" destination="wxA-IN-tEE" collectionClass="NSMutableArray" id="V8H-hR-VMf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
