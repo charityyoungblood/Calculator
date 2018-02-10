@@ -48,17 +48,17 @@ class CalculatorViewController: UIViewController {
     
 
     var buttonRadius = [UIButton].self
-// trying to change corner radius of all buttons
+// ** How do I change corner radius of all buttons?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 //        UIButton.appearance().layer.cornerRadius = 5.0
-        for button in 0..<(buttonRadius.count-1) {
-        if button.tag == 0 || display.tag == 0 {
-            button.layer.cornerRadius = 5.0
-    }
-        }
+//        for button in 0..<(buttonRadius.count-1) {
+//        if button.tag == 0 || display.tag == 0 {
+//            button.layer.cornerRadius = 5.0
+//    }
+//        }
     }
     
     override func didReceiveMemoryWarning() {
