@@ -36,10 +36,10 @@ class CalculatorViewController: UIViewController {
     }
     
     @IBAction func piOperation(_ sender: UIButton) {
-        if let mathematicalSymbol = sender.currentTitle! {// this is read: "If I can let mathematicalSymbol equal the sender(UIButton)'s current title then I'm going to
+        if let mathematicalSymbol = sender.currentTitle {// this is read: "If I can let mathematicalSymbol equal the sender(UIButton)'s current title then I'm going to
         // you want to force unwrap only if UIButton is "set", meaning it's not "nil"
             if mathematicalSymbol == "π" {
-                display.text = String(M_PI) // to convert the type for M_PI, which is Double, to String type - use String keyword and wrap value (M_PI) in parentheses
+                display.text = String(Double.pi) // to convert the type for M_PI, which is Double, to String type - use String keyword and wrap value (M_PI) in parentheses
             }
         }
         
