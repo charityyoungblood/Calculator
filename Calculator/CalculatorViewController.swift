@@ -15,9 +15,7 @@ class CalculatorViewController: UIViewController {
     var userIsInTheMiddleOfTyping: Bool = false // **REMEMBER: ALL properties/varaibles that are initialized in Swift HAVE to have an INITIAL VALUE** - if you create a variable and don't set it to any value, you will get an error
     
     @IBAction func touchDigit(_ sender: UIButton) {
-        if sender.tag == 0 {
-            sender.layer.cornerRadius = 5.0
-        }
+       
         let digit = sender.currentTitle!
         
         if userIsInTheMiddleOfTyping { // if the user IS in the middle of typing, set the display text to the constant "textCurrentlyInDisplay" > then update the display text to the value of textCurrentlyInDisplay + digit pressed
@@ -44,21 +42,12 @@ class CalculatorViewController: UIViewController {
         }
         
     }
-    
-    
-
-    var buttonRadius = [UIButton].self
+   
 // ** How do I change corner radius of all buttons?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-//        UIButton.appearance().layer.cornerRadius = 5.0
-//        for button in 0..<(buttonRadius.count-1) {
-//        if button.tag == 0 || display.tag == 0 {
-//            button.layer.cornerRadius = 5.0
-//    }
-//        }
+        
     }
     
     override func didReceiveMemoryWarning() {

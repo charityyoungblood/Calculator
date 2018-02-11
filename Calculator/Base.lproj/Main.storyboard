@@ -274,7 +274,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="buttonRadius:" destination="BYZ-38-t0r" eventType="touchUpInside" id="42m-Md-bby"/>
                                     <action selector="touchDigit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XBf-Wp-Pj1"/>
                                 </connections>
                             </button>
