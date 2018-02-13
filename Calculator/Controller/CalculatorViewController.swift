@@ -9,28 +9,28 @@
 import UIKit
 
 class CalculatorViewController: UIViewController {
-
+    
     @IBOutlet private weak var display: UILabel! // this represents a property on the CalculatorViewController or an instance variable
     
     private var userIsInTheMiddleOfTyping: Bool = false // **REMEMBER: ALL properties/varaibles that are initialized in Swift HAVE to have an INITIAL VALUE** - if you create a variable and don't set it to any value, you will get an error
     
     @IBAction private func touchDigit(_ sender: UIButton) {
-       
+        
         let digit = sender.currentTitle!
         
         if userIsInTheMiddleOfTyping { // if the user IS in the middle of typing, set the display text to the constant "textCurrentlyInDisplay" > then update the display text to the value of textCurrentlyInDisplay + digit pressed
-        // TODO: Place numbers in display, based on what digits are selected
+            // TODO: Place numbers in display, based on what digits are selected
             let textCurrentlyInDisplay = display.text! // this variable will display the current text in the display
             display.text! = textCurrentlyInDisplay + digit // to concatenate string data types, you can use the + sign
-        // **If you wanted to set the Optional to "not set" you would set the value to "nil
+            // **If you wanted to set the Optional to "not set" you would set the value to "nil
             // Ex: display.text = nil
         }
         else {
             display.text! = digit // if the user is NOT in the middle of typing, update the display text to show the digit, which was pressed
         }
         userIsInTheMiddleOfTyping = true // this may need to be changed - if you DON'T include this line, the calculator will ONLY display the digit, not the "collection of digits pressed
-            // i.e. WITH this line, the display reads 76854
-            // WITHOUT this line, the display reads 4, then deletes the 4 to show 5, then deletes the 5 to show 6 -- i.e. ONLY shows ONE NUMBER at a time 
+        // i.e. WITH this line, the display reads 76854
+        // WITHOUT this line, the display reads 4, then deletes the 4 to show 5, then deletes the 5 to show 6 -- i.e. ONLY shows ONE NUMBER at a time
     }
     // *** REMEMEBER: When creating the methods for your code, think about how to simplify, always making your code D.R.Y
     // In the case of type converting every operation to a String, this would not be effective as you would have to change it back to a Double to operate on the value
@@ -41,10 +41,10 @@ class CalculatorViewController: UIViewController {
     
     private var displayValue: Double { // this is an example of a "Computed Property/Variable"
         get {
-           return Double(display.text!)! // when we "get" or request the value of displayValue, we want to receieve(return) the display.text with the Double data type
+            return Double(display.text!)! // when we "get" or request the value of displayValue, we want to receieve(return) the display.text with the Double data type
         }
         set {
-           display.text = String(newValue) // when we "set" the value of displayValue, we want to set it to newValue with the String data type 
+            display.text = String(newValue) // when we "set" the value of displayValue, we want to set it to newValue with the String data type
         }
     }
     // In order to use the functions in the CalculatorBrain class, we need to initialize a new instance of the CalculatorBrain class in the CalculatorViewController class and set it to a private variable
@@ -53,19 +53,19 @@ class CalculatorViewController: UIViewController {
     
     @IBAction private func performOperation(sender: UIButton) {
         if userIsInTheMiddleOfTyping {
-            brain.setOperand(displayValue)
-        userIsInTheMiddleOfTyping = false
+            brain.setOperand(operand: displayValue)
+            userIsInTheMiddleOfTyping = false
         }
         
         if let mathematicalSymbol = sender.currentTitle {// this is read: "If I can let mathematicalSymbol equal the sender(UIButton)'s current title then I'm going to
-        // you want to force unwrap only if UIButton is "set", meaning it's not "nil"
+            // you want to force unwrap only if UIButton is "set", meaning it's not "nil"
             brain.performOperation(symbol: mathematicalSymbol)
         }
         displayValue = brain.result
     }
     
-   
-// ** How do I change corner radius of all buttons?
-
+    
+    // ** How do I change corner radius of all buttons?
+    
 }
 
