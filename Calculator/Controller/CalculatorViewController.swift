@@ -47,31 +47,25 @@ class CalculatorViewController: UIViewController {
            display.text = String(newValue) // when we "set" the value of displayValue, we want to set it to newValue with the String data type 
         }
     }
+    // In order to use the functions in the CalculatorBrain class, we need to initialize a new instance of the CalculatorBrain class in the CalculatorViewController class and set it to a private variable
     
-    @IBAction private func piOperation(_ sender: UIButton) {
+    private var brain = CalculatorBrain()
+    
+    @IBAction private func performOperation(sender: UIButton) {
+        if userIsInTheMiddleOfTyping {
+            brain.setOperand(displayValue)
         userIsInTheMiddleOfTyping = false
+        }
         
         if let mathematicalSymbol = sender.currentTitle {// this is read: "If I can let mathematicalSymbol equal the sender(UIButton)'s current title then I'm going to
         // you want to force unwrap only if UIButton is "set", meaning it's not "nil"
-            if mathematicalSymbol == "π" {
-                display.text = String(Double.pi) // to convert the type for M_PI, which is Double, to String type - use String keyword and wrap value (M_PI) in parentheses
+            brain.performOperation(symbol: mathematicalSymbol)
         }
-        
+        displayValue = brain.result
     }
-    }
+    
    
 // ** How do I change corner radius of all buttons?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
