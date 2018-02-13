@@ -10,11 +10,11 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
 
-    @IBOutlet weak var display: UILabel! // this represents a property on the CalculatorViewController or an instance variable
+    @IBOutlet private weak var display: UILabel! // this represents a property on the CalculatorViewController or an instance variable
     
-    var userIsInTheMiddleOfTyping: Bool = false // **REMEMBER: ALL properties/varaibles that are initialized in Swift HAVE to have an INITIAL VALUE** - if you create a variable and don't set it to any value, you will get an error
+    private var userIsInTheMiddleOfTyping: Bool = false // **REMEMBER: ALL properties/varaibles that are initialized in Swift HAVE to have an INITIAL VALUE** - if you create a variable and don't set it to any value, you will get an error
     
-    @IBAction func touchDigit(_ sender: UIButton) {
+    @IBAction private func touchDigit(_ sender: UIButton) {
        
         let digit = sender.currentTitle!
         
@@ -39,7 +39,7 @@ class CalculatorViewController: UIViewController {
     // Instead of using = to set the variable, we place curly braces after the variable name and data type
     // Inside the curly brackets, place code to calculate the value when we "get" the value and when we "set" the value
     
-    var displayValue: Double { // this is an example of a "Computed Property/Variable"
+    private var displayValue: Double { // this is an example of a "Computed Property/Variable"
         get {
            return Double(display.text!)! // when we "get" or request the value of displayValue, we want to receieve(return) the display.text with the Double data type
         }
@@ -48,7 +48,7 @@ class CalculatorViewController: UIViewController {
         }
     }
     
-    @IBAction func piOperation(_ sender: UIButton) {
+    @IBAction private func piOperation(_ sender: UIButton) {
         userIsInTheMiddleOfTyping = false
         
         if let mathematicalSymbol = sender.currentTitle {// this is read: "If I can let mathematicalSymbol equal the sender(UIButton)'s current title then I'm going to

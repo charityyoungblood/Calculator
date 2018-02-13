@@ -18,10 +18,16 @@ class CalculatorBrain {
         
     }
     
-    func performOperation() { // this function will operate on the operand
-        // the symbol parameter is the String data type of the mathematical symbol 
+    func performOperation(symbol: String) { // this function will operate on the operand
+        // the symbol parameter is the String data type of the mathematical symbol
         
     }
     
-    var
+    var result: Double { // since this value is set "internally", i.e. you don't want the user to set the result, we can implement ONLY the "get" portion of the computed property
+        // Setting ONLY the "get" portion of the computed property makes this a "Read-Only" property
+        get {
+            return 0.0
+        }
+        
+    }
 }
