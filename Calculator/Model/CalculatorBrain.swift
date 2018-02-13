@@ -34,7 +34,7 @@ class CalculatorBrain {
     var result: Double { // since this value is set "internally", i.e. you don't want the user to set the result, we can implement ONLY the "get" portion of the computed property
         // Setting ONLY the "get" portion of the computed property makes this a "Read-Only" property
         get {
-            return 0.0
+            return accumulator
         }
         
     }
