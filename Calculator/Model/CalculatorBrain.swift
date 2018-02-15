@@ -20,13 +20,13 @@ class CalculatorBrain {
         accumulator = operand
         
     }
-   
     
     func performOperation(symbol: String) { // this function will operate on the operand
         // the symbol parameter is the String data type of the mathematical symbol
         switch symbol {
         case "π": accumulator = .pi
         case "√": accumulator = sqrt(accumulator)
+        case "+": accumulator = accumulator + accumulator // what user typed into display + what user typed into display 
         default: break // when using a switch statement, you have to consider EVERY value
             // to do this, we need to add a "default" so that after the cases we want to consider have been completed, the program will stop
         }
