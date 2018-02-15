@@ -13,6 +13,8 @@ class CalculatorViewController: UIViewController {
     @IBOutlet private weak var display: UILabel! // this represents a property on the CalculatorViewController or an instance variable
     
     private var userIsInTheMiddleOfTyping: Bool = false // **REMEMBER: ALL properties/varaibles that are initialized in Swift HAVE to have an INITIAL VALUE** - if you create a variable and don't set it to any value, you will get an error
+    // this is an example of a "stored" variable, when a value is "stored" to be used later
+    
     
     @IBAction private func touchDigit(_ sender: UIButton) {
         
@@ -39,7 +41,8 @@ class CalculatorViewController: UIViewController {
     // Instead of using = to set the variable, we place curly braces after the variable name and data type
     // Inside the curly brackets, place code to calculate the value when we "get" the value and when we "set" the value
     
-    private var displayValue: Double { // this is an example of a "Computed Property/Variable"
+    private var displayValue: Double {// this variable will automatically track what is in the display, *** i.e. If you "get" the value of displayValue it would be the value in the display as a Double and if I ever "set" the value of displayValue it would set the displayValue to the value you specified ***
+        // this specific type of variable declaration (where we use "set" value and a "get" value) is an example of a "Computed Property/Variable" - since the value is "calculated"
         get {
             return Double(display.text!)! // when we "get" or request the value of displayValue, we want to receieve(return) the display.text with the Double data type
         }
@@ -61,7 +64,7 @@ class CalculatorViewController: UIViewController {
             // you want to force unwrap only if UIButton is "set", meaning it's not "nil"
             brain.performOperation(symbol: mathematicalSymbol)
         }
-        displayValue = brain.result
+            displayValue = brain.result
     }
     
     
