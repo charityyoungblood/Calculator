@@ -20,6 +20,7 @@ class CalculatorBrain {
         accumulator = operand
         
     }
+   
     
     func performOperation(symbol: String) { // this function will operate on the operand
         // the symbol parameter is the String data type of the mathematical symbol
