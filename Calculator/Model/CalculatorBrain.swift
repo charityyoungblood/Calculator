@@ -30,7 +30,7 @@ class CalculatorBrain {
     
     var operations: Dictionary<String,Operation>  = [// here we create the Dictionary with types String, as the "key" and Operation (enum Operation) as the "value"
          // start with creating "key:value" pairs for constants, then create for other operations (+, x, -, etc)
-        "π" : Operation.Constant, // this is setting the value to the enum Operation in the case of Constant
+        "π" : Operation.Constant(.pi), // this is setting the value to the enum Operation in the case of Constant
         "√" : Operation.UnaryOperation, // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
         // in order to make the square root operation work, we have to start by declaring a new type "enum"
         
@@ -44,25 +44,28 @@ class CalculatorBrain {
         // Binary Operations - operators which operate on two values (+, - , *, /, Ex: 1 + 2, or 3 * 5)
         // Equals (Equal sign) Operation
         
-        case Constant
+        case Constant(Double)
         case UnaryOperation
         case BinaryOperation
         case Equals
         
     }
     
+    // In the switch statement, we use the associated value for the case .Constant, instead of Constant(Double) we are replacing the variable with the variable "value" and setting the accumulator to that value
+    
     func performOperation(symbol: String) { // this function will operate on the operand
         // the symbol parameter is the String data type of the mathematical symbol
          // we use bracket notation to access values in Dictionary
              // since the Dictionary MAY NOT contain a key of Double, we have to unwrap the Optional Double
         if let operation = operations[symbol] { // operation (without capital letter) is a local variable - NOT referring to enum Operation
-            switch {
-                case .Constant, // like in classes, we access the individual case (i.e. case Constant) with dot notation
-                case .UnaryOperation,
-                case .BinaryOperation,
-                case .Equals,
+            switch operation {
+            case .Constant(let value): accumulator = value // like in classes, we access the individual case (i.e. case Constant) with dot notation
+            case .UnaryOperation: break
+            case .BinaryOperation: break
+            case .Equals: break
             }
         }
+    }
         //  Previous code below using switch statement
         //        switch symbol {
         //        case "π": accumulator = .pi
