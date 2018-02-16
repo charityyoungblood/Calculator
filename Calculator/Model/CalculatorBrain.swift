@@ -28,7 +28,7 @@ class CalculatorBrain {
     // instead, we will create a table, which will include the "operation type" - which will inlcude "generic constants", "generic unary operation", "generic binary operation" - and we will look into the table to decide what to do
     // this table will be a Dictionary
     
-    var operations: Dictionary<String,Double>  = [// here we create the Dictionary with types String, as the "key" and Double as the "value"
+    var operations: Dictionary<String,Operation>  = [// here we create the Dictionary with types String, as the "key" and Operation (enum Operation) as the "value"
          // start with creating "key:value" pairs for constants, then create for other operations (+, x, -, etc)
         "π" : Operation.Constant, // this is setting the value to the enum Operation in the case of Constant
         "√" : Operation.UnaryOperation, // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
@@ -57,7 +57,7 @@ class CalculatorBrain {
              // since the Dictionary MAY NOT contain a key of Double, we have to unwrap the Optional Double
         if let operation = operations[symbol] { // operation (without capital letter) is a local variable - NOT referring to enum Operation
             switch {
-                case .Constant, // like in classes, we access the case Constant with dot notation 
+                case .Constant, // like in classes, we access the individual case (i.e. case Constant) with dot notation
                 case .UnaryOperation,
                 case .BinaryOperation,
                 case .Equals,
