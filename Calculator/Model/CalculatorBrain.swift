@@ -29,23 +29,39 @@ class CalculatorBrain {
     // this table will be a Dictionary
     
     var operations: Dictionary<String,Double>  = [// here we create the Dictionary with types String, as the "key" and Double as the "value"
-        "π" : .pi,
-        "e" : M_E,
-        "√" : sqrt(<#T##Double#>) // square root function - in order to make this work, we have to declare a new type "enum"
+         // start with creating "key:value" pairs for constants, then create for other operations (+, x, -, etc)
+        "π" : Operation.Constant, // this is setting the value to the enum Operation in the case of Constant
+        "√" : Operation.UnaryOperation, // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
+        // in order to make the square root operation work, we have to start by declaring a new type "enum"
         
         ]
     //***REMEMBER: a CONSTANT is a value that DOES NOT change. So since "pi" is always 3.14..., we can set this as a constant
     // Same with "e", "cos", etc.***
     
-    enum Operation {// an enum is a discrete set of values 
+    enum Operation {// an enum has to have a discrete set of values (integer values) - Think about what type of values do you need for your calculator
+        // Constant (pi, e, - values that don't change)
+        // Unary Operations - negative (Ex: 2 --3)
+        // Binary Operations - operators which operate on two values (+, - , *, /, Ex: 1 + 2, or 3 * 5)
+        // Equals (Equal sign) Operation
+        
+        case Constant
+        case UnaryOperation
+        case BinaryOperation
+        case Equals
         
     }
     
     func performOperation(symbol: String) { // this function will operate on the operand
         // the symbol parameter is the String data type of the mathematical symbol
-        if let constant = operations[symbol] {
-            accumulator = constant // since the Dictionary MAY NOT contain a key of Double, we have to unwrap the Optional Double
-            
+         // we use bracket notation to access values in Dictionary
+             // since the Dictionary MAY NOT contain a key of Double, we have to unwrap the Optional Double
+        if let operation = operations[symbol] { // operation (without capital letter) is a local variable - NOT referring to enum Operation
+            switch {
+                case .Constant, // like in classes, we access the case Constant with dot notation 
+                case .UnaryOperation,
+                case .BinaryOperation,
+                case .Equals,
+            }
         }
         //  Previous code below using switch statement
         //        switch symbol {
