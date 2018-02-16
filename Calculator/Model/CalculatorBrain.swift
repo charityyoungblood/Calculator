@@ -12,6 +12,10 @@ import Foundation // as the Model is UI Independent DO NOT import UI Kit in the 
 // In the case of the calculator - operation type?
 // This class should hold all of the functions for operating the calculator
 
+func multiply(op1: Double, op2: Double) -> Double {
+    return op1 * op2
+}
+
 class CalculatorBrain {
     
     private var accumulator = 0.0 // When you set a variable to . something (0.0, 0.5), Swift will infer that value is of data type "Double"
@@ -31,9 +35,10 @@ class CalculatorBrain {
     var operations: Dictionary<String,Operation>  = [// here we create the Dictionary with types String, as the "key" and Operation (enum Operation) as the "value"
          // start with creating "key:value" pairs for constants, then create for other operations (+, x, -, etc)
         "π" : Operation.Constant(.pi), // this is setting the value to the enum Operation in the case of Constant
-        "√" : Operation.UnaryOperation, // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
+        "√" : Operation.UnaryOperation(sqrt), // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
         // in order to make the square root operation work, we have to start by declaring a new type "enum"
-        
+        "x" : Operation.BinaryOperation(multiply),
+        "=" : Operation.Equals(equals)
         ]
     //***REMEMBER: a CONSTANT is a value that DOES NOT change. So since "pi" is always 3.14..., we can set this as a constant
     // Same with "e", "cos", etc.***
@@ -44,10 +49,10 @@ class CalculatorBrain {
         // Binary Operations - operators which operate on two values (+, - , *, /, Ex: 1 + 2, or 3 * 5)
         // Equals (Equal sign) Operation
         
-        case Constant(Double)
-        case UnaryOperation
-        case BinaryOperation
-        case Equals
+        case Constant(Double) // Double is the associated value
+        case UnaryOperation((Double) -> Double) // to use a function as an associated value, we have to think about what is the data type going in? The return data type?
+        case BinaryOperation((Double, Double) -> Double)
+        case Equals((Double, Double) -> Double) // or does it only return a Double?
         
     }
     
@@ -60,7 +65,7 @@ class CalculatorBrain {
         if let operation = operations[symbol] { // operation (without capital letter) is a local variable - NOT referring to enum Operation
             switch operation {
             case .Constant(let value): accumulator = value // like in classes, we access the individual case (i.e. case Constant) with dot notation
-            case .UnaryOperation: break
+            case .UnaryOperation(let function): accumulator = function(accumulator) // to use a function as an associated value
             case .BinaryOperation: break
             case .Equals: break
             }
@@ -74,7 +79,7 @@ class CalculatorBrain {
         //         default: break
         // when using a switch statement, you have to consider EVERY value
         // to do this, we need to add a "default" so that after the cases we want to consider have been completed, the program will stop
-    }
+    
     
     
     var result: Double { // since this value is set "internally", i.e. you don't want the user to set the result, we can implement ONLY the "get" portion of the computed property
@@ -82,6 +87,6 @@ class CalculatorBrain {
         get {
             return accumulator
         }
-        
-    }
+}
+
 }
