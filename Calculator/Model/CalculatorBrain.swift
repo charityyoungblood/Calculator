@@ -66,7 +66,7 @@ class CalculatorBrain {
             switch operation {
             case .Constant(let value): accumulator = value // like in classes, we access the individual case (i.e. case Constant) with dot notation
             case .UnaryOperation(let function): accumulator = function(accumulator) // to use a function as an associated value
-            case .BinaryOperation: break
+            case .BinaryOperation(let binaryFunction): pending = pendingBinaryOperationInfo(binaryFunction: binaryFunction, firstOperand: accumulator)
             case .Equals: break
             }
         }
@@ -80,6 +80,12 @@ class CalculatorBrain {
         // when using a switch statement, you have to consider EVERY value
         // to do this, we need to add a "default" so that after the cases we want to consider have been completed, the program will stop
     
+    private var pending: pendingBinaryOperationInfo?
+    
+    struct pendingBinaryOperationInfo {
+        var binaryFunction: (Double, Double) -> Double
+        var firstOperand: Double
+    }
     
     
     var result: Double { // since this value is set "internally", i.e. you don't want the user to set the result, we can implement ONLY the "get" portion of the computed property
