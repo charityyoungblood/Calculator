@@ -33,6 +33,8 @@ class CalculatorBrain {
         "√" : Operation.UnaryOperation(sqrt), // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
         // in order to make the square root operation work, we have to start by declaring a new type "enum"
         "𝗑" : Operation.BinaryOperation({$0 * $1}),
+        // this is a closure in shorthand form. It is the same as below:
+        // "x" : Operation.BinaryOperation({ (op1: Double, op2: Double) -> Double in return op1 * op2})
         "-" : Operation.BinaryOperation({$0 - $1}),
         "+" : Operation.BinaryOperation({$0 + $1}),
         "÷" : Operation.BinaryOperation({$0 / $1}),
