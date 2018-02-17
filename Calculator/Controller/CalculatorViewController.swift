@@ -62,13 +62,10 @@ class CalculatorViewController: UIViewController {
         
         if let mathematicalSymbol = sender.currentTitle {// this is read: "If I can let mathematicalSymbol equal the sender(UIButton)'s current title then I'm going to
             // you want to force unwrap only if UIButton is "set", meaning it's not "nil"
-            brain.performOperation(symbol: mathematicalSymbol)
+            brain.performNewOperation(symbol: mathematicalSymbol)
         }
             displayValue = brain.result
     }
-    
-    
     // ** How do I change corner radius of all buttons?
-    
 }
 

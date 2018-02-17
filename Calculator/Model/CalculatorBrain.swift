@@ -12,19 +12,14 @@ import Foundation // as the Model is UI Independent DO NOT import UI Kit in the 
 // In the case of the calculator - operation type?
 // This class should hold all of the functions for operating the calculator
 
-func multiply(op1: Double, op2: Double) -> Double {
-    return op1 * op2
-}
-
 class CalculatorBrain {
     
     private var accumulator = 0.0 // When you set a variable to . something (0.0, 0.5), Swift will infer that value is of data type "Double"
     
     func setOperand(operand: Double) {
         accumulator = operand
-        
     }
-    
+ 
     // As we are creating this code, think about WHAT types of operations we need in our calculator - they boil down to four
     //
     // Notice that each of the operations are very similar, the only thing that would be changing are the characters included (i.e. sqrt or pi)
@@ -37,7 +32,10 @@ class CalculatorBrain {
         "π" : Operation.Constant(.pi), // this is setting the value to the enum Operation in the case of Constant
         "√" : Operation.UnaryOperation(sqrt), // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
         // in order to make the square root operation work, we have to start by declaring a new type "enum"
-        "𝗑" : Operation.BinaryOperation(multiply),
+        "𝗑" : Operation.BinaryOperation({$0 * $1}),
+        "-" : Operation.BinaryOperation({$0 - $1}),
+        "+" : Operation.BinaryOperation({$0 + $1}),
+        "÷" : Operation.BinaryOperation({$0 / $1}),
         "=" : Operation.Equals
         ]
     //***REMEMBER: a CONSTANT is a value that DOES NOT change. So since "pi" is always 3.14..., we can set this as a constant
@@ -57,7 +55,7 @@ class CalculatorBrain {
     
     // In the switch statement, we use the associated value for the case .Constant, instead of Constant(Double) we are replacing the variable with the variable "value" and setting the accumulator to that value
     
-    func performOperation(symbol: String) { // this function will operate on the operand
+    func performNewOperation(symbol: String) { // this function will operate on the operand
         // the symbol parameter is the String data type of the mathematical symbol
          // we use bracket notation to access values in Dictionary
              // since the Dictionary MAY NOT contain a key of Double, we have to unwrap the Optional Double
@@ -65,13 +63,21 @@ class CalculatorBrain {
             switch operation {
             case .Constant(let value): accumulator = value // like in classes, we access the individual case (i.e. case Constant) with dot notation
             case .UnaryOperation(let function): accumulator = function(accumulator) // to use a function as an associated value
-            case .BinaryOperation(let functionToo): pending = PendingBinaryOperationInfo(binaryFunction: functionToo, firstOperand: accumulator)
+            case .BinaryOperation(let function):
+                excutePendingBinaryOperation()
+                pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
             case .Equals:
-                if pending != nil {
-                    accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator) // this code is read as: If pending is not equal to nil, we will set the accumulator to pending (which is the Optional for pendingBinaryOperationInfo) - which takes on two variables. We are setting those variables to firstOperand (of type Double) and the second variable as the accumulator
-                    pending = nil // now we can set pending to nil, because the operation will no longer be pending
+                excutePendingBinaryOperation()
                 }
             }
+        }
+    
+    private func excutePendingBinaryOperation() {
+        if pending != nil {
+            accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
+            // this code is read as: If pending is not equal to nil, we will set the accumulator to pending (which is the Optional for pendingBinaryOperationInfo) - which takes on two variables. We are setting those variables to firstOperand (of type Double) and the second variable as the accumulator
+            // now we can set pending to nil, because the operation will no longer be pending
+            pending = nil
         }
     }
         //  Previous code below using switch statement
