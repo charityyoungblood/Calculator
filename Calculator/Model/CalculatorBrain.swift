@@ -27,13 +27,14 @@ class CalculatorBrain {
     // instead, we will create a table, which will include the "operation type" - which will inlcude "generic constants", "generic unary operation", "generic binary operation" - and we will look into the table to decide what to do
     // this table will be a Dictionary
     
-    var operations: Dictionary<String,Operation>  = [// here we create the Dictionary with types String, as the "key" and Operation (enum Operation) as the "value"
+   private var operations: Dictionary<String,Operation>  = [// here we create the Dictionary with types String, as the "key" and Operation (enum Operation) as the "value"
          // start with creating "key:value" pairs for constants, then create for other operations (+, x, -, etc)
         "π" : Operation.Constant(.pi), // this is setting the value to the enum Operation in the case of Constant
         "√" : Operation.UnaryOperation(sqrt), // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
         // in order to make the square root operation work, we have to start by declaring a new type "enum"
         "𝗑" : Operation.BinaryOperation({$0 * $1}),
-        // this is a closure in shorthand form. It is the same as below:
+        // this is a closure in shorthand form. closures have default values (i.e. $0, $1, etc for however many arguments your function takes.
+        // The closure in full form would look like below:
         // "x" : Operation.BinaryOperation({ (op1: Double, op2: Double) -> Double in return op1 * op2})
         "-" : Operation.BinaryOperation({$0 - $1}),
         "+" : Operation.BinaryOperation({$0 + $1}),
@@ -43,7 +44,7 @@ class CalculatorBrain {
     //***REMEMBER: a CONSTANT is a value that DOES NOT change. So since "pi" is always 3.14..., we can set this as a constant
     // Same with "e", "cos", etc.***
     
-    enum Operation {// an enum has to have a discrete set of values (integer values) - Think about what type of values do you need for your calculator
+   private enum Operation {// an enum has to have a discrete set of values (integer values) - Think about what type of values do you need for your calculator
         // Constant (pi, e, - values that don't change)
         // Unary Operations - negative (Ex: 2 --3)
         // Binary Operations - operators which operate on two values (+, - , *, /, Ex: 1 + 2, or 3 * 5)
@@ -57,7 +58,7 @@ class CalculatorBrain {
     
     // In the switch statement, we use the associated value for the case .Constant, instead of Constant(Double) we are replacing the variable with the variable "value" and setting the accumulator to that value
     
-    func performNewOperation(symbol: String) { // this function will operate on the operand
+  func performNewOperation(symbol: String) { // this function will operate on the operand
         // the symbol parameter is the String data type of the mathematical symbol
          // we use bracket notation to access values in Dictionary
              // since the Dictionary MAY NOT contain a key of Double, we have to unwrap the Optional Double
