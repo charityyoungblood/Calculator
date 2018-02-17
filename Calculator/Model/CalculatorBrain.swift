@@ -38,7 +38,7 @@ class CalculatorBrain {
         "√" : Operation.UnaryOperation(sqrt), // square root function - since the sqrt function is not a "Double" value, it is a function, we need something that is going to take a Double and return a Double
         // in order to make the square root operation work, we have to start by declaring a new type "enum"
         "x" : Operation.BinaryOperation(multiply),
-        "=" : Operation.Equals(equals)
+        "=" : Operation.Equals
         ]
     //***REMEMBER: a CONSTANT is a value that DOES NOT change. So since "pi" is always 3.14..., we can set this as a constant
     // Same with "e", "cos", etc.***
@@ -52,7 +52,7 @@ class CalculatorBrain {
         case Constant(Double) // Double is the associated value
         case UnaryOperation((Double) -> Double) // to use a function as an associated value, we have to think about what is the data type going in? The return data type?
         case BinaryOperation((Double, Double) -> Double)
-        case Equals((Double, Double) -> Double) // or does it only return a Double?
+        case Equals // or does it only return a Double?
         
     }
     
@@ -67,7 +67,11 @@ class CalculatorBrain {
             case .Constant(let value): accumulator = value // like in classes, we access the individual case (i.e. case Constant) with dot notation
             case .UnaryOperation(let function): accumulator = function(accumulator) // to use a function as an associated value
             case .BinaryOperation(let binaryFunction): pending = pendingBinaryOperationInfo(binaryFunction: binaryFunction, firstOperand: accumulator)
-            case .Equals: break
+            case .Equals:
+                if pending != nil {
+                    accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator) // this code is read as: If pending is not equal to nil, we will set the accumulator to pending (which is the Optional for pendingBinaryOperationInfo) - which takes on two variables. We are setting those variables to firstOperand (of type Double) and the second variable as the accumulator
+                    pending = nil // now we can set pending to nil, because the operation will no longer be pending
+                }
             }
         }
     }
