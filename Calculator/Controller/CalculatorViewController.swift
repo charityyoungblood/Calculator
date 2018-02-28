@@ -10,6 +10,13 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
+    
+    
     @IBOutlet private weak var display: UILabel! // this represents a property on the CalculatorViewController or an instance variable
     
     @IBOutlet var roundButton: [UIButton]!
