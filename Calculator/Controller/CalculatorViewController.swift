@@ -28,6 +28,9 @@ class CalculatorViewController: UIViewController {
     
     @IBOutlet weak var roundDisplay: UILabel!
     
+    @IBOutlet var colorGroup1: [UIButton]!
+    
+    
     private var userIsInTheMiddleOfTyping: Bool = false // **REMEMBER: ALL properties/varaibles that are initialized in Swift HAVE to have an INITIAL VALUE** - if you create a variable and don't set it to any value, you will get an error
     // this is an example of a "stored" variable, when a value is "stored" to be used later
     
@@ -86,6 +89,6 @@ class CalculatorViewController: UIViewController {
         }
             roundDisplay.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
     }
-    // ** How do I change corner radius of all buttons?
+    // ** How do I change background color once equal sign is pressed? 
 }
 
