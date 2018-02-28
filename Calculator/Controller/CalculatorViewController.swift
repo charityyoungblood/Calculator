@@ -12,7 +12,12 @@ class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        for button in roundButton {
+            button.layer.cornerRadius = 5
+            button.clipsToBounds = true
+        }
+        roundDisplay.layer.cornerRadius = 5
+        roundDisplay.clipsToBounds = true
         
     }
     
