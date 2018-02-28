@@ -12,6 +12,10 @@ class CalculatorViewController: UIViewController {
     
     @IBOutlet private weak var display: UILabel! // this represents a property on the CalculatorViewController or an instance variable
     
+    @IBOutlet var roundButton: [UIButton]!
+    
+    @IBOutlet weak var roundDisplay: UILabel!
+    
     private var userIsInTheMiddleOfTyping: Bool = false // **REMEMBER: ALL properties/varaibles that are initialized in Swift HAVE to have an INITIAL VALUE** - if you create a variable and don't set it to any value, you will get an error
     // this is an example of a "stored" variable, when a value is "stored" to be used later
     
@@ -65,6 +69,7 @@ class CalculatorViewController: UIViewController {
             brain.performNewOperation(symbol: mathematicalSymbol)
         }
             displayValue = brain.result
+        
     }
     // ** How do I change corner radius of all buttons?
 }
