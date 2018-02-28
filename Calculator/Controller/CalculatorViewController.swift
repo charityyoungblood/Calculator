@@ -81,7 +81,10 @@ class CalculatorViewController: UIViewController {
             brain.performNewOperation(symbol: mathematicalSymbol)
         }
             displayValue = brain.result
-        
+        for colorButton in roundButton {
+            colorButton.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        }
+            roundDisplay.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
     }
     // ** How do I change corner radius of all buttons?
 }
